@@ -1,3 +1,131 @@
+// Cargar y mostrar proyectos
+(async function () {
+  try {
+    const response = await fetch('./projects.json');
+    const data = await response.json();
+    const projects = data.projects;
+    const categories = data.categories;
+
+    const filtersContainer = document.getElementById('filtersContainer');
+    const projectsGrid = document.getElementById('projectsGrid');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    let activeFilter = 'all';
+    let showAll = false;
+    let visibleCount = getInitialVisibleCount();
+
+    // Función para obtener cantidad inicial de proyectos según dispositivo
+    function getInitialVisibleCount() {
+      const w = window.innerWidth;
+      if (w < 768) return 4;      // Móvil: 4 proyectos
+      if (w < 1024) return 6;     // Tablet: 6 proyectos
+      return 9;                   // Escritorio: 9 proyectos
+    }
+
+    // Crear botones de filtro
+    categories.forEach((category) => {
+      const button = document.createElement('button');
+      button.className = `filter-btn ${category.id === 'all' ? 'active' : ''}`;
+      button.textContent = category.name;
+      button.setAttribute('data-filter', category.id);
+
+      button.addEventListener('click', () => {
+        // Actualizar botón activo
+        document.querySelectorAll('.filter-btn').forEach((btn) => {
+          btn.classList.remove('active');
+        });
+        button.classList.add('active');
+        activeFilter = category.id;
+        showAll = false;
+        visibleCount = getInitialVisibleCount();
+        loadMoreBtn.style.display = 'none';
+
+        // Filtrar y mostrar proyectos
+        renderProjects();
+      });
+
+      filtersContainer.appendChild(button);
+    });
+
+    // Función para filtrar proyectos
+    function filterProjects() {
+      return projects.filter((project) => {
+        if (activeFilter === 'all') {
+          return true;
+        }
+        return project.categories.includes(activeFilter);
+      });
+    }
+
+    // Renderizar proyectos
+    function renderProjects() {
+      const filteredProjects = filterProjects();
+      projectsGrid.innerHTML = '';
+
+      filteredProjects.forEach((project, index) => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.setAttribute('data-categories', project.categories.join(','));
+        
+        // Mostrar u ocultar según visibleCount
+        if (index >= visibleCount && !showAll) {
+          card.classList.add('hidden');
+        }
+        
+        card.innerHTML = `
+          <div class="project-image">
+            <img src="${project.image}" alt="${project.title}" />
+          </div>
+          <div class="project-content">
+            <span class="project-category">${project.categories.map(cat => getCategoryName(cat, categories)).join(', ')}</span>
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-description">${project.description}</p>
+          </div>
+        `;
+        projectsGrid.appendChild(card);
+      });
+
+      // Mostrar/ocultar botón "Ver Más"
+      const isMobileOrTablet = window.innerWidth < 1024;
+      if (isMobileOrTablet && filteredProjects.length > visibleCount && !showAll) {
+        loadMoreBtn.style.display = 'block';
+      } else if (window.innerWidth >= 1024 && filteredProjects.length > 9 && !showAll) {
+        loadMoreBtn.style.display = 'block';
+      } else {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+
+    // Manejador del botón "Ver Más"
+    loadMoreBtn.addEventListener('click', () => {
+      showAll = true;
+      const visibleCards = document.querySelectorAll('.project-card.hidden');
+      visibleCards.forEach((card) => {
+        card.classList.remove('hidden');
+      });
+      loadMoreBtn.style.display = 'none';
+    });
+
+    // Actualizar al cambiar tamaño de ventana
+    window.addEventListener('resize', () => {
+      const newCount = getInitialVisibleCount();
+      if (newCount !== visibleCount && !showAll) {
+        visibleCount = newCount;
+        renderProjects();
+      }
+    });
+
+    function getCategoryName(categoryId, categories) {
+      const category = categories.find((cat) => cat.id === categoryId);
+      return category ? category.name : categoryId;
+    }
+
+    // Inicializar
+    renderProjects();
+  } catch (error) {
+    console.error('Error al cargar los proyectos:', error);
+  }
+})();
+
 // Menú móvil
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");

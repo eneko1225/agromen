@@ -22,6 +22,7 @@
           <div class="nav-links" id="navLinks">
             <a href="#nosotros">Nosotros</a>
             <a href="#servicios">Servicios</a>
+            <a href="#colaboraciones">Colaboraciones</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#contacto">Contacto</a>
           </div>
@@ -55,7 +56,7 @@
           </div>
           <div class="flex-col">
             <h3 style="font-size: 1.5rem; margin-bottom: 1rem">
-              Más de 15 años construyendo confianza
+              Más de 10 años construyendo confianza
             </h3>
             <p>
               Construcciones y Reformas AGROMEN S.L. se funda en el año 2.012
@@ -165,40 +166,62 @@
       </div>
     </section>
 
-    <!-- Proyectos -->
-    <section id="proyectos" class="section-bg">
+    <!-- Colaboraciones -->
+    <section id="colaboraciones" class="section-bg">
       <div class="container">
-        <h2 class="section-title">Proyectos Destacados</h2>
+        <h2 class="section-title">Colaboraciones</h2>
         <div class="projects-carousel">
           <div class="carousel-track">
             <div class="carousel-slide">
-              <img src="./img/proyectos/logo-artea.png" alt="Artea" />
+              <img src="./img/colaboraciones/logo-artea.png" alt="Artea" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/proyectos/logo-ascensores-rekalde.png" alt="Ascensores Rekalde" />
+              <img src="./img/colaboraciones/logo-ascensores-rekalde.png" alt="Ascensores Rekalde" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/proyectos/logo-inbisa.png" alt="Inbisa" />
+              <img src="./img/colaboraciones/logo-inbisa.png" alt="Inbisa" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/proyectos/logo-jaureguizar.png" alt="Jaureguizar" />
+              <img src="./img/colaboraciones/logo-jaureguizar.png" alt="Jaureguizar" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/proyectos/logo-metrovacesa.png" alt="Metrovacesa" />
+              <img src="./img/colaboraciones/logo-metrovacesa.png" alt="Metrovacesa" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/proyectos/logo-Promotora-Vizcaina.png" alt="Promotora Vizcaína" />
+              <img src="./img/colaboraciones/logo-Promotora-Vizcaina.png" alt="Promotora Vizcaína" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/proyectos/Logo-thyssen.png" alt="Thyssen" />
+              <img src="./img/colaboraciones/Logo-thyssen.png" alt="Thyssen" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/proyectos/Logo-volkswagen.png" alt="Volkswagen" />
+              <img src="./img/colaboraciones/Logo-volkswagen.png" alt="Volkswagen" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/proyectos/logo_hefits.png" alt="Hefits" />
+              <img src="./img/colaboraciones/logo_hefits.png" alt="Hefits" />
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos" class="section-light">
+      <div class="container">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        
+        <!-- Filtros de categorías -->
+        <div class="filters-container">
+          <div class="filters" id="filtersContainer"></div>
+        </div>
+
+        <!-- Galería de proyectos -->
+        <div class="projects-grid" id="projectsGrid"></div>
+
+        <!-- Botón Ver Más -->
+        <div class="load-more-container">
+          <button id="loadMoreBtn" class="btn btn-secondary" style="display: none;">
+            Ver Más Proyectos
+          </button>
         </div>
       </div>
     </section>
@@ -221,17 +244,17 @@
             </div>
             <div class="contact-item">
               <div class="contact-icon"><i class="fas fa-phone"></i></div>
-              <div>+56 9 1234 5678</div>
+              <div>+34 9 1234 5678</div>
             </div>
             <div class="contact-item">
               <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <div>info@agromen.net</div>
+              <div><a href="mailto:info@agromen.net">info@agromen.net</a></div>
             </div>
           </div>
           <div class="contact-form">
             <form id="contactForm">
-              <input type="text" placeholder="Nombre completo" required />
-              <input type="email" placeholder="Correo electrónico" required />
+              <input type="text" id="name" autocomplete="given-name" name="name" placeholder="Nombre completo" required />
+              <input name="email" id="email" type="email" placeholder="Correo electrónico" required />
               <textarea placeholder="Mensaje" required></textarea>
               <button type="submit" class="btn" style="width: 100%">
                 Enviar Mensaje
