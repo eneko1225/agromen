@@ -114,7 +114,7 @@
         projectsGrid.appendChild(card);
       });
 
-      // Mostrar/ocultar botón "Ver Más"
+      // Mostrar/ocultar botón "Ver más"
       const isMobileOrTablet = window.innerWidth < 1024;
       if (isMobileOrTablet && filteredProjects.length > visibleCount && !showAll) {
         loadMoreBtn.style.display = 'block';
@@ -128,7 +128,7 @@
       updateStatus(shown, filteredProjects.length);
     }
 
-    // Manejador del botón "Ver Más"
+    // Manejador del botón "Ver más"
     loadMoreBtn.addEventListener('click', () => {
       showAll = true;
       const visibleCards = document.querySelectorAll('.project-card.hidden');
@@ -173,6 +173,12 @@
     }
   }
 })();
+
+// Año actual en el pie (el HTML trae 2025 por si no hay JS)
+const currentYear = document.getElementById("currentYear");
+if (currentYear) {
+  currentYear.textContent = String(new Date().getFullYear());
+}
 
 // Menú móvil
 const menuToggle = document.getElementById("menuToggle");
