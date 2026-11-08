@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
     <title>Agromen Constructora</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -11,14 +14,23 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Header -->
     <header>
       <div class="container">
         <nav>
-          <div class="logo">Agromen</div>
-          <div class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-          </div>
+          <div class="logo" translate="no">Agromen</div>
+          <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <i class="fas fa-bars" aria-hidden="true"></i>
+          </button>
           <div class="nav-links" id="navLinks">
             <a href="#nosotros">Nosotros</a>
             <a href="#servicios">Servicios</a>
@@ -30,12 +42,13 @@
       </div>
     </header>
 
+    <main id="main">
     <!-- Hero -->
     <section class="hero">
       <div class="container">
         <h1>Construyendo el futuro con solidez</h1>
         <p>
-          Agromen es una empresa constructora comprometida con la excelencia, la
+          <span translate="no">Agromen</span> es una empresa constructora comprometida con la excelencia, la
           sostenibilidad y la innovación en cada proyecto que emprendemos.
         </p>
         <a href="#contacto" class="btn">Contáctanos</a>
@@ -51,22 +64,25 @@
             <img
               src="./img/nosotros.jpg"
               alt="Equipo Agromen"
-              style="width: 100%; border-radius: 0.75rem; margin-bottom: 1.5rem"
+              width="600"
+              height="864"
+              loading="lazy"
+              style="width: 100%; height: auto; border-radius: 0.75rem; margin-bottom: 1.5rem"
             />
           </div>
           <div class="flex-col">
             <h3 style="font-size: 1.5rem; margin-bottom: 1rem">
-              Más de 10 años construyendo confianza
+              Más de 10&nbsp;años construyendo confianza
             </h3>
             <p>
-              Construcciones y Reformas AGROMEN S.L. se funda en el año 2.012
+              Construcciones y Reformas <span translate="no">AGROMEN&nbsp;S.L.</span> se funda en el año 2.012
               con el objetivo de dar servicio tanto a las necesidades existentes
               de obra nueva como al emergente mercado de la rehabilitación,
               enfocado tanto a clientes particulares y empresas, como a
               comunidades de vecinos y ayuntamientos. Somos una empresa joven
               con un equipo de profesionales con más de veinte años de
               experiencia en construcción. Y eso se nota. La empresa está
-              formada por un equipo multidisciplinar, y se distribuye en 3 áreas
+              formada por un equipo multidisciplinar, y se distribuye en 3&nbsp;áreas
               de trabajo conectadas entre sí: Departamento de estudios y oficina
               técnica, dirigido por el gerente y el aparejador, departamento de
               obras y producción, dirigido por los jefes de obra, y el
@@ -94,7 +110,7 @@
                 color: var(--green-700);
               "
             >
-              <i class="fas fa-users" style="margin-right: 0.5rem"></i>
+              <i class="fas fa-users" style="margin-right: 0.5rem" aria-hidden="true"></i>
               <span>Equipo técnico certificado y altamente capacitado</span>
             </div>
           </div>
@@ -115,7 +131,7 @@
         >
           <div class="service-card">
             <div class="service-icon">
-              <i class="fa-solid fa-helmet-safety"></i>
+              <i class="fa-solid fa-helmet-safety" aria-hidden="true"></i>
             </div>
             <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem">
               Seguridad y salud
@@ -131,7 +147,7 @@
             </p>
           </div>
           <div class="service-card">
-            <div class="service-icon"><i class="fas fa-tractor"></i></div>
+            <div class="service-icon"><i class="fas fa-tractor" aria-hidden="true"></i></div>
             <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem">
               Eficiencia energética
             </h3>
@@ -145,7 +161,7 @@
           </div>
           <div class="service-card">
             <div class="service-icon">
-              <i class="fa-solid fa-universal-access"></i>
+              <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
             </div>
             <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem">
               Accesibilidad
@@ -170,36 +186,51 @@
     <section id="colaboraciones" class="section-bg">
       <div class="container">
         <h2 class="section-title">Colaboraciones</h2>
-        <div class="projects-carousel">
+        <div
+          class="projects-carousel"
+          role="region"
+          aria-roledescription="carrusel"
+          aria-label="Empresas con las que colaboramos"
+        >
           <div class="carousel-track">
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/logo-artea.png" alt="Artea" />
+              <img src="./img/colaboraciones/logo-artea.png" alt="Artea" width="250" height="250" loading="lazy" translate="no" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/logo-ascensores-rekalde.png" alt="Ascensores Rekalde" />
+              <img src="./img/colaboraciones/logo-ascensores-rekalde.png" alt="Ascensores Rekalde" width="250" height="250" loading="lazy" translate="no" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/logo-inbisa.png" alt="Inbisa" />
+              <img src="./img/colaboraciones/logo-inbisa.png" alt="Inbisa" width="250" height="250" loading="lazy" translate="no" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/logo-jaureguizar.png" alt="Jaureguizar" />
+              <img src="./img/colaboraciones/logo-jaureguizar.png" alt="Jaureguizar" width="250" height="250" loading="lazy" translate="no" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/logo-metrovacesa.png" alt="Metrovacesa" />
+              <img src="./img/colaboraciones/logo-metrovacesa.png" alt="Metrovacesa" width="250" height="250" loading="lazy" translate="no" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/logo-Promotora-Vizcaina.png" alt="Promotora Vizcaína" />
+              <img src="./img/colaboraciones/logo-Promotora-Vizcaina.png" alt="Promotora Vizcaína" width="250" height="250" loading="lazy" translate="no" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/Logo-thyssen.png" alt="Thyssen" />
+              <img src="./img/colaboraciones/Logo-thyssen.png" alt="Thyssen" width="250" height="250" loading="lazy" translate="no" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/Logo-volkswagen.png" alt="Volkswagen" />
+              <img src="./img/colaboraciones/Logo-volkswagen.png" alt="Volkswagen" width="250" height="250" loading="lazy" translate="no" />
             </div>
             <div class="carousel-slide">
-              <img src="./img/colaboraciones/logo_hefits.png" alt="Hefits" />
+              <img src="./img/colaboraciones/logo_hefits.png" alt="Hefits" width="250" height="250" loading="lazy" translate="no" />
             </div>
           </div>
+        </div>
+        <div class="carousel-controls">
+          <button
+            type="button"
+            class="carousel-toggle"
+            id="carouselToggle"
+            aria-label="Pausar carrusel"
+          >
+            <i class="fas fa-pause" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -211,15 +242,21 @@
         
         <!-- Filtros de categorías -->
         <div class="filters-container">
-          <div class="filters" id="filtersContainer"></div>
+          <div
+            class="filters"
+            id="filtersContainer"
+            role="group"
+            aria-label="Filtrar proyectos por categoría"
+          ></div>
         </div>
 
         <!-- Galería de proyectos -->
+        <p class="visually-hidden" id="projectsStatus" role="status" aria-live="polite"></p>
         <div class="projects-grid" id="projectsGrid"></div>
 
         <!-- Botón Ver Más -->
         <div class="load-more-container">
-          <button id="loadMoreBtn" class="btn btn-secondary" style="display: none;">
+          <button type="button" id="loadMoreBtn" class="btn btn-secondary" style="display: none;">
             Ver Más Proyectos
           </button>
         </div>
@@ -238,32 +275,37 @@
           <div class="contact-info">
             <div class="contact-item">
               <div class="contact-icon">
-                <i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
               </div>
               <div>Av. Principal 123, Zona Industrial, Ciudad Agrícola</div>
             </div>
             <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-phone"></i></div>
-              <div>+34 9 1234 5678</div>
+              <div class="contact-icon"><i class="fas fa-phone" aria-hidden="true"></i></div>
+              <div><a href="tel:+34912345678">+34&nbsp;9&nbsp;1234&nbsp;5678</a></div>
             </div>
             <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <div><a href="mailto:info@agromen.net">info@agromen.net</a></div>
+              <div class="contact-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+              <div><a href="mailto:info@agromen.net" translate="no">info@agromen.net</a></div>
             </div>
           </div>
           <div class="contact-form">
             <form id="contactForm">
-              <input type="text" id="name" autocomplete="given-name" name="name" placeholder="Nombre completo" required />
-              <input name="email" id="email" type="email" placeholder="Correo electrónico" required />
-              <textarea placeholder="Mensaje" required></textarea>
+              <label for="name" class="visually-hidden">Nombre completo</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Nombre completo…" required />
+              <label for="email" class="visually-hidden">Correo electrónico</label>
+              <input type="email" id="email" name="email" autocomplete="email" spellcheck="false" placeholder="Correo electrónico…" required />
+              <label for="message" class="visually-hidden">Mensaje</label>
+              <textarea id="message" name="message" autocomplete="off" placeholder="Mensaje…" required></textarea>
               <button type="submit" class="btn" style="width: 100%">
                 Enviar Mensaje
               </button>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
             </form>
           </div>
         </div>
       </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -275,6 +317,7 @@
             color: var(--white);
             margin-bottom: 0.5rem;
           "
+          translate="no"
         >
           Agromen Constructora
         </div>

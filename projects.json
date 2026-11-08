@@ -5,6 +5,8 @@
       "title": "ABANDOIBARRA A",
       "categories": ["viviendas"],
       "image": "./img/proyectos/abandoibarra-a.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Edificio residencial de nueva construcción"
     },
     {
@@ -12,6 +14,8 @@
       "title": "ABANDOIBARRA B",
       "categories": ["viviendas"],
       "image": "./img/proyectos/abandoibarra-b.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Edificio residencial de nueva construcción"
     },
     {
@@ -19,6 +23,8 @@
       "title": "C/ ALMERÍA",
       "categories": ["rehabilitacion-fachadas"],
       "image": "./img/proyectos/c-almeria.jpg",
+      "width": 600,
+      "height": 445,
       "description": "Rehabilitación integral de fachada"
     },
     {
@@ -26,6 +32,8 @@
       "title": "ASTRABUDUA",
       "categories": ["viviendas"],
       "image": "./img/proyectos/astrabudua.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Viviendas de nueva construcción"
     },
     {
@@ -33,6 +41,8 @@
       "title": "BARAKALDO",
       "categories": ["viviendas"],
       "image": "./img/proyectos/barakaldo.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Proyecto residencial completo"
     },
     {
@@ -40,6 +50,8 @@
       "title": "BONAPARTE",
       "categories": ["portales", "accesibilidad"],
       "image": "./img/proyectos/bonaparte.jpg",
+      "width": 600,
+      "height": 418,
       "description": "Rehabilitación de portal y accesibilidad"
     },
     {
@@ -47,6 +59,8 @@
       "title": "LA PASTORA",
       "categories": ["rehabilitacion-cubiertas"],
       "image": "./img/proyectos/la-pastora.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Rehabilitación de cubiertas"
     },
     {
@@ -54,6 +68,8 @@
       "title": "LAS MERCEDES",
       "categories": ["ascensores"],
       "image": "./img/proyectos/las-mercedes.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Instalación de ascensor moderno"
     },
     {
@@ -61,6 +77,8 @@
       "title": "MIRADOR EN BILBAO",
       "categories": ["obras"],
       "image": "./img/proyectos/mirador-bilbao.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -68,6 +86,8 @@
       "title": "SAN ELOY",
       "categories": ["obras"],
       "image": "./img/proyectos/san-eloy.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -75,6 +95,8 @@
       "title": "RAMPA",
       "categories": ["accesibilidad"],
       "image": "./img/proyectos/rampa.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -82,6 +104,8 @@
       "title": "SANTUTXU 16",
       "categories": ["portales", "accesibilidad"],
       "image": "./img/proyectos/santutxu-16.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -89,6 +113,8 @@
       "title": "PARQUE EUROPA",
       "categories": ["obras"],
       "image": "./img/proyectos/parque-europa.jpg",
+      "width": 600,
+      "height": 447,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -96,6 +122,8 @@
       "title": "GALINDO 4",
       "categories": ["obras", "viviendas"],
       "image": "./img/proyectos/galindo-4.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -103,6 +131,8 @@
       "title": "ETXEZURI",
       "categories": ["obras", "viviendas"],
       "image": "./img/proyectos/etxezuri.jpg",
+      "width": 600,
+      "height": 443,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -110,6 +140,8 @@
       "title": "MENDIBLE",
       "categories": ["obras", "viviendas"],
       "image": "./img/proyectos/mendible.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -117,6 +149,8 @@
       "title": "MAIDAGAN",
       "categories": ["obras", "viviendas"],
       "image": "./img/proyectos/maidagan.jpg",
+      "width": 600,
+      "height": 444,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -124,6 +158,8 @@
       "title": "ETXEBARRI",
       "categories": ["obras", "viviendas"],
       "image": "./img/proyectos/etxebarri.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -131,6 +167,8 @@
       "title": "GENERAL CONCHA",
       "categories": ["accesibilidad"],
       "image": "./img/proyectos/general-concha.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -138,6 +176,8 @@
       "title": "ETXEGORRI",
       "categories": ["rehabilitacion-fachadas"],
       "image": "./img/proyectos/etxegorri.jpg",
+      "width": 450,
+      "height": 290,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -145,6 +185,8 @@
       "title": "IMPERMEABILIZACIÓN",
       "categories": ["obras"],
       "image": "./img/proyectos/impermeabilizacion.jpg",
+      "width": 600,
+      "height": 450,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -152,6 +194,8 @@
       "title": "IPARRAGUIRRE 4",
       "categories": ["rehabilitacion-fachadas"],
       "image": "./img/proyectos/iparraguirre-4.jpg",
+      "width": 600,
+      "height": 337,
       "description": "Mejora de accesibilidad en edificio público"
     },
     {
@@ -159,6 +203,8 @@
       "title": "GANGUREN",
       "categories": ["portales", "rehabilitacion-fachadas"],
       "image": "./img/proyectos/ganguren.jpg",
+      "width": 450,
+      "height": 320,
       "description": "Mejora de accesibilidad en edificio público"
     }
   ],

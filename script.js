@@ -9,7 +9,10 @@
     const filtersContainer = document.getElementById('filtersContainer');
     const projectsGrid = document.getElementById('projectsGrid');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
-    let activeFilter = 'all';
+    const projectsStatus = document.getElementById('projectsStatus');
+    const params = new URLSearchParams(window.location.search);
+    const urlFilter = params.get('categoria');
+    let activeFilter = categories.some((cat) => cat.id === urlFilter) ? urlFilter : 'all';
     let showAll = false;
     let visibleCount = getInitialVisibleCount();
 
@@ -24,17 +27,23 @@
     // Crear botones de filtro
     categories.forEach((category) => {
       const button = document.createElement('button');
-      button.className = `filter-btn ${category.id === 'all' ? 'active' : ''}`;
+      const isActive = category.id === activeFilter;
+      button.type = 'button';
+      button.className = `filter-btn ${isActive ? 'active' : ''}`;
       button.textContent = category.name;
       button.setAttribute('data-filter', category.id);
+      button.setAttribute('aria-pressed', String(isActive));
 
       button.addEventListener('click', () => {
         // Actualizar botón activo
         document.querySelectorAll('.filter-btn').forEach((btn) => {
           btn.classList.remove('active');
+          btn.setAttribute('aria-pressed', 'false');
         });
         button.classList.add('active');
+        button.setAttribute('aria-pressed', 'true');
         activeFilter = category.id;
+        updateUrl();
         showAll = false;
         visibleCount = getInitialVisibleCount();
         loadMoreBtn.style.display = 'none';
@@ -45,6 +54,23 @@
 
       filtersContainer.appendChild(button);
     });
+
+    // Reflejar el filtro activo en la URL (?categoria=...)
+    function updateUrl() {
+      const url = new URL(window.location.href);
+      if (activeFilter === 'all') {
+        url.searchParams.delete('categoria');
+      } else {
+        url.searchParams.set('categoria', activeFilter);
+      }
+      history.replaceState(null, '', url);
+    }
+
+    function updateStatus(shown, total) {
+      projectsStatus.textContent = total === 0
+        ? 'No hay proyectos en esta categoría.'
+        : `Mostrando ${shown} de ${total} proyectos.`;
+    }
 
     // Función para filtrar proyectos
     function filterProjects() {
@@ -61,8 +87,12 @@
       const filteredProjects = filterProjects();
       projectsGrid.innerHTML = '';
 
+      if (filteredProjects.length === 0) {
+        projectsGrid.innerHTML = '<p class="projects-empty">No hay proyectos en esta categoría.</p>';
+      }
+
       filteredProjects.forEach((project, index) => {
-        const card = document.createElement('div');
+        const card = document.createElement('article');
         card.className = 'project-card';
         card.setAttribute('data-categories', project.categories.join(','));
         
@@ -73,12 +103,12 @@
         
         card.innerHTML = `
           <div class="project-image">
-            <img src="${project.image}" alt="${project.title}" />
+            <img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" width="${project.width}" height="${project.height}" loading="lazy" />
           </div>
           <div class="project-content">
-            <span class="project-category">${project.categories.map(cat => getCategoryName(cat, categories)).join(', ')}</span>
-            <h3 class="project-title">${project.title}</h3>
-            <p class="project-description">${project.description}</p>
+            <span class="project-category">${escapeHtml(project.categories.map(cat => getCategoryName(cat, categories)).join(', '))}</span>
+            <h3 class="project-title">${escapeHtml(project.title)}</h3>
+            <p class="project-description">${escapeHtml(project.description)}</p>
           </div>
         `;
         projectsGrid.appendChild(card);
@@ -93,6 +123,9 @@
       } else {
         loadMoreBtn.style.display = 'none';
       }
+
+      const shown = showAll ? filteredProjects.length : Math.min(visibleCount, filteredProjects.length);
+      updateStatus(shown, filteredProjects.length);
     }
 
     // Manejador del botón "Ver Más"
@@ -103,6 +136,8 @@
         card.classList.remove('hidden');
       });
       loadMoreBtn.style.display = 'none';
+      const total = projectsGrid.querySelectorAll('.project-card').length;
+      updateStatus(total, total);
     });
 
     // Actualizar al cambiar tamaño de ventana
@@ -114,6 +149,15 @@
       }
     });
 
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     function getCategoryName(categoryId, categories) {
       const category = categories.find((cat) => cat.id === categoryId);
       return category ? category.name : categoryId;
@@ -123,6 +167,10 @@
     renderProjects();
   } catch (error) {
     console.error('Error al cargar los proyectos:', error);
+    const projectsGrid = document.getElementById('projectsGrid');
+    if (projectsGrid) {
+      projectsGrid.innerHTML = '<p class="projects-empty" role="alert">No se han podido cargar los proyectos. Recarga la página para intentarlo de nuevo.</p>';
+    }
   }
 })();
 
@@ -130,36 +178,53 @@
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
+function setMenuOpen(open) {
+  navLinks.classList.toggle("active", open);
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+}
+
 menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
+  setMenuOpen(!navLinks.classList.contains("active"));
 });
 
-// Smooth scroll para anclajes
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 80,
-        behavior: "smooth",
-      });
-      if (navLinks.classList.contains("active")) {
-        navLinks.classList.remove("active");
-      }
-    }
-  });
+// Cerrar el menú al elegir una sección (el desplazamiento suave lo hace el CSS)
+navLinks.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => setMenuOpen(false));
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navLinks.classList.contains("active")) {
+    setMenuOpen(false);
+    menuToggle.focus();
+  }
 });
 
 // Formulario (simulado)
 const form = document.getElementById("contactForm");
 if (form) {
+  const formStatus = document.getElementById("formStatus");
+  let isDirty = false;
+
+  form.addEventListener("input", () => {
+    isDirty = true;
+    formStatus.textContent = "";
+  });
+
+  // Avisar antes de salir si hay un mensaje a medio escribir
+  window.addEventListener("beforeunload", (e) => {
+    if (isDirty) {
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  });
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert(
-      "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto."
-    );
+    formStatus.textContent =
+      "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.";
     form.reset();
+    isDirty = false;
   });
 }
 
@@ -173,6 +238,10 @@ if (form) {
   const total = slides.length;
   const intervalMs = 3000;
   let autoplay = null;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const toggleBtn = document.getElementById("carouselToggle");
+  // Pausado por el usuario (o por preferir menos movimiento)
+  let userPaused = reducedMotion.matches;
 
   function calcSlidesPerView() {
     const w = window.innerWidth;
@@ -199,6 +268,7 @@ if (form) {
   }
 
   function startAutoplay() {
+    if (userPaused) return;
     if (autoplay) clearInterval(autoplay);
     autoplay = setInterval(() => {
       let slidesPerView = calcSlidesPerView();
@@ -215,6 +285,22 @@ if (form) {
       autoplay = null;
     }
   }
+
+  function updateToggle() {
+    if (!toggleBtn) return;
+    toggleBtn.setAttribute("aria-label", userPaused ? "Reanudar carrusel" : "Pausar carrusel");
+    toggleBtn.innerHTML = `<i class="fas ${userPaused ? "fa-play" : "fa-pause"}" aria-hidden="true"></i>`;
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      userPaused = !userPaused;
+      updateToggle();
+      if (userPaused) stopAutoplay();
+      else startAutoplay();
+    });
+  }
+  updateToggle();
 
   // Initialize
   function init() {
@@ -240,10 +326,12 @@ if (form) {
     if (img.complete) {
       loaded++;
     } else {
-      img.addEventListener("load", () => {
+      const onDone = () => {
         loaded++;
         if (loaded === images.length) init();
-      });
+      };
+      img.addEventListener("load", onDone, { once: true });
+      img.addEventListener("error", onDone, { once: true });
     }
   });
   
